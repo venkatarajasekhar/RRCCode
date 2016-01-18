@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+ <worldSettings>
+        <add key="worldWidth" value="500"/>
+        <add key="worldHeight" value="500"/>
+        <obstacle>
+            <add key="obstacleSWCornerX" value="10"/>
+            <add key="obstacleSWCornerY" value="20"/>
+            <add key="width" value="50"/>
+            <add key="height" value="70"/>
+        </obstacle>
+        <obstacle>
+            <add key="obstacleSWCornerX" value="250"/>
+            <add key="obstacleSWCornerY" value="340"/>
+            <add key="width" value="45"/>
+            <add key="height" value="120"/>
+        </obstacle>
+        <obstacle>
+            <add key="obstacleSWCornerX" value="100"/>
+            <add key="obstacleSWCornerY" value="100"/>
+            <add key="width" value="80"/>
+            <add key="height" value="200"/>
+        </obstacle>
+ </worldSettings>
+</configuration>
