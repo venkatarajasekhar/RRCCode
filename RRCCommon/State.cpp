@@ -1,7 +1,8 @@
 #include "State.h"
+#include "RRCCommon/PositionFactory.h"
 
 State::State() {
-
+    pos = *(PositionFactory::NewPosition(PositionType::Random));
 }
 
 State::State(Position pos) {
@@ -17,11 +18,6 @@ Position State::getPos() const {
 
 void State::setPos(const Position &value) {
     pos = value;
-}
-
-unsigned int State::GetStateDim() const
-{
-    return pos.GetDim();
 }
 
 

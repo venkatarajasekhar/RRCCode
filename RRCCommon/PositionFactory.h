@@ -1,8 +1,8 @@
 #ifndef POSITIONFACTORY_H
 #define POSITIONFACTORY_H
 
+#include "PositionType.h"
 class Position;
-enum PositionType;
 
 class PositionFactory
 {

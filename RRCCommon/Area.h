@@ -8,13 +8,15 @@ class Area : public Position
 public:
     Area();
     Area(float x, float y, float width, float height);
-    virtual ~Area();
+    ~Area();
 
-    virtual float width() const;
-    virtual void setWidth(float width);
+    float width() const;
+    void setWidth(float width);
 
-    virtual float height() const;
-    virtual void setHeight(float height);
+    float height() const;
+    void setHeight(float height);
+
+    bool isInsideArea(Position pos);
 
 private:
     float m_width;

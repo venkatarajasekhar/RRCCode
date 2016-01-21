@@ -1,8 +1,10 @@
 #include "RRCCore.h"
-#include "RandomNode.h"
 #include "RRCCommon/Area.h"
 #include "Monitor/MonitorWrapper.h"
 #include "Monitor/Monitor.h"
+
+#include <RRCCommon/PositionFactory.h>
+#include <RRCCommon/PositionType.h>
 
 RRCCore* RRCCore::ms_instance = 0;
 
@@ -23,9 +25,8 @@ RRCCore::~RRCCore() {
 }
 
 void RRCCore::Run() {
-    Area worldSize = MonitorWrapper::Instance()->GetMonitor()->GetSceneSize();
-    RandomNode newPoint(worldSize.GetNthDimLimit(1), worldSize.GetNthDimLimit(2));
-    OnNewPointAdded(newPoint.GetX(), newPoint.GetY());
+    Position *pos = PositionFactory::NewPosition(PositionType::Random);
+    OnNewPointAdded(pos->x(), pos->y());
 }
 
 void RRCCore::OnNewPointAdded(float x, float y) {

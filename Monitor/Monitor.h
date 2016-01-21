@@ -2,8 +2,6 @@
 #define MONITOR_H
 
 #include <RRCCore/RRCCore.h>
-
-
 class UIModel;
 class RRCCore;
 class Area;
@@ -14,6 +12,7 @@ public:
     Monitor(UIModel *uiModel, RRCCore *rrcCore);
     virtual ~Monitor();
     Area GetSceneSize() const;
+    std::vector<Area> GetObstacles() const;
     void OnButtonRunClicked();
 
     void OnNewPointAdded(float x, float y);

@@ -7,11 +7,11 @@ class Position {
     Position(float x, float y);
     virtual ~Position();
 
-    virtual float x() const;
-    virtual void setX(float x);
+    float x() const;
+    void setX(float x);
 
-    virtual float y() const;
-    virtual void setY(float y);
+    float y() const;
+    void setY(float y);
 
   protected:
     float m_x;

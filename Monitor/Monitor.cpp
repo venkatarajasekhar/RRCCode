@@ -15,6 +15,11 @@ Area Monitor::GetSceneSize() const {
     return this->uiModel->GetSceneSize();
 }
 
+std::vector<Area> Monitor::GetObstacles() const
+{
+    return uiModel->GetObstacles();
+}
+
 void Monitor::OnButtonRunClicked()
 {
     rrcCore->Run();

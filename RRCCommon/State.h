@@ -7,11 +7,10 @@ class State {
   public:
     State();
     State(Position pos);
-    virtual ~State();
+    ~State();
 
-    virtual Position getPos() const;
-    virtual void setPos(const Position &value);
-    virtual unsigned int GetStateDim() const;
+    Position getPos() const;
+    void setPos(const Position &value);
 
 protected:
     Position pos;

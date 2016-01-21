@@ -8,7 +8,7 @@ class PositionRandom : public Position
 {
 public:
     PositionRandom(Area area);
-    virtual ~PositionRandom();
+    ~PositionRandom();
 };
 
 #endif // POSITIONRANDOM_H

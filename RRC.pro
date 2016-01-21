@@ -28,7 +28,8 @@ SOURCES += main.cpp\
     RRCCommon/Node.cpp \
     RRCCommon/Area.cpp \
     RRCCommon/PositionRandom.cpp \
-    RRCCommon/PositionFactory.cpp
+    RRCCommon/PositionFactory.cpp \
+    RRCCore/PlanningUtil.cpp
 
 HEADERS  += MainWindow.h \
     UI/UIView.h \
@@ -46,7 +47,8 @@ HEADERS  += MainWindow.h \
     RRCCommon/Area.h \
     RRCCommon/PositionRandom.h \
     RRCCommon/PositionFactory.h \
-    RRCCommon/PositionType.h
+    RRCCommon/PositionType.h \
+    RRCCore/PlanningUtil.h
 
 FORMS    +=
 
