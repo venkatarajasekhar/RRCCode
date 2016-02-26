@@ -5,24 +5,24 @@
 #include <Monitor/Monitor.h>
 
 UIModel::UIModel(QObject *parent) : QGraphicsScene(parent) {
-    this->InitializeUIModel();
+    InitializeUIModel();
 }
 
 Area UIModel::GetSceneSize() {
-    return this->sceneSize;
+    return m_sceneSize;
 }
 
 std::vector<Area> UIModel::GetObstacles() {
-    return this->obstacles;
+    return m_obstacles;
 }
 
 void UIModel::SetSceneSize() {
-    setSceneRect(0, 0, sceneSize.width(), sceneSize.height());
+    setSceneRect(0, 0, m_sceneSize.width(), m_sceneSize.height());
 }
 
 void UIModel::AddObstacles() {
-    for(unsigned int i = 0; i < obstacles.size(); ++i) {
-        QGraphicsRectItem *item  = addRect(obstacles[i].x(), obstacles[i].y(), obstacles[i].width(), obstacles[i].height());
+    for(unsigned int i = 0; i < m_obstacles.size(); ++i) {
+        QGraphicsRectItem *item  = addRect(m_obstacles[i].x(), m_obstacles[i].y(), m_obstacles[i].width(), m_obstacles[i].height());
         item->setBrush(Qt::black);
         addItem(item);
     }
@@ -41,7 +41,7 @@ void UIModel::OnNewPointAdded(float x, float y)
 }
 
 void UIModel::InitializeUIModel() {
-    this->sceneSize = Area(0, 0, RRCConfig::Instance()->InitializeFromConfig("worldSettings", "worldWidth", 100), RRCConfig::Instance()->InitializeFromConfig("worldSettings", "worldHeight", 100));
-    this->obstacles = RRCConfig::Instance()->InitializeObstaclesFromConfig();
+    m_sceneSize = Area(0, 0, RRCConfig::Instance()->InitializeFromConfig("worldSettings", "worldWidth", 100), RRCConfig::Instance()->InitializeFromConfig("worldSettings", "worldHeight", 100));
+    m_obstacles = RRCConfig::Instance()->InitializeObstaclesFromConfig();
 }
 

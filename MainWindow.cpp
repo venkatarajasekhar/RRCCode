@@ -6,7 +6,6 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QShortcut>
-#include <RRCConfig/RRCConfig.h>
 #include <RRCCore/RRCCore.h>
 #include <Monitor/Monitor.h>
 #include <Monitor/MonitorWrapper.h>
@@ -17,8 +16,8 @@ MainWindow::MainWindow() {
     model->AddObstacles();
 
     UIView *viewer = new UIView(model, this);
-    monitor = new Monitor(model, RRCCore::Instance());
-    monitorWrapper = new MonitorWrapper(monitor);
+    m_monitor = std::unique_ptr<Monitor>(new Monitor(model, RRCCore::Instance()));
+    m_monitorWrapper = std::unique_ptr<MonitorWrapper>(new MonitorWrapper(m_monitor.get()));
 
     setWindowTitle("RRC");
 
@@ -44,6 +43,5 @@ MainWindow::MainWindow() {
 }
 
 MainWindow::~MainWindow() {
-    delete monitor;
-    delete monitorWrapper;
+
 }

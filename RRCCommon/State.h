@@ -3,6 +3,10 @@
 
 #include "Position.h"
 
+/**
+ * @brief The State class
+ * State includes position, it may include other info, like orientation
+ */
 class State {
   public:
     State();
@@ -13,7 +17,7 @@ class State {
     void setPos(const Position &value);
 
 protected:
-    Position pos;
+    Position m_pos;
 };
 
 #endif // STATE_H

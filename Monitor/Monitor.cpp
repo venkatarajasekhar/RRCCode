@@ -1,10 +1,15 @@
 #include "Monitor.h"
 #include <RRCCommon/Area.h>
+#include <RRCCore/RRCCore.h>
 #include <UI/UIModel.h>
 
-Monitor::Monitor(UIModel *uiModel, RRCCore *rrcCore) {
-    this->uiModel = uiModel;
-    this->rrcCore = rrcCore;
+//TODO: remove these two headers, this is just used as output new point position
+#include <iostream>
+#include <RRCCommon/Position.h>
+
+
+Monitor::Monitor(UIModel *uiModel, RRCCore *rrcCore) : m_uiModel(uiModel), m_rrcCore(rrcCore)
+{
 }
 
 Monitor::~Monitor() {
@@ -12,20 +17,21 @@ Monitor::~Monitor() {
 }
 
 Area Monitor::GetSceneSize() const {
-    return this->uiModel->GetSceneSize();
+    return m_uiModel->GetSceneSize();
 }
 
 std::vector<Area> Monitor::GetObstacles() const
 {
-    return uiModel->GetObstacles();
+    return m_uiModel->GetObstacles();
 }
 
 void Monitor::OnButtonRunClicked()
 {
-    rrcCore->Run();
+    m_rrcCore->Run();
 }
 
 void Monitor::OnNewPointAdded(float x, float y)
 {
-    uiModel->OnNewPointAdded(x, y);
+    m_uiModel->OnNewPointAdded(x, y);
+    std::cout << Position(x, y) << std::endl;
 }

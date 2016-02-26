@@ -6,7 +6,7 @@ class FileLoadErrorException : public std::exception
 {
 public:
   FileLoadErrorException();
-  virtual const char* what() const throw();
+  virtual const char* what() const noexcept;
 };
 
 #endif // FILELOADERROREXCEPTION_H

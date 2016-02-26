@@ -23,8 +23,8 @@ public slots:
   private:
     void InitializeUIModel();
 
-    Area sceneSize;
-    std::vector<Area> obstacles;
+    Area m_sceneSize;
+    std::vector<Area> m_obstacles;
 
   signals:
     void signal_dataAdded();

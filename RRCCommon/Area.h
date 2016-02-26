@@ -16,7 +16,7 @@ public:
     float height() const;
     void setHeight(float height);
 
-    bool isInsideArea(Position pos);
+    bool isInsideArea(const Position &pos) const;
 
 private:
     float m_width;

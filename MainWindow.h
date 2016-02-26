@@ -2,8 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <memory>
 
-class RRCCore;
 class Monitor;
 class MonitorWrapper;
 
@@ -21,9 +21,8 @@ public:
 
 private:
   Ui::MainWindow *ui;
-  RRCCore *rrcCore;
-  Monitor *monitor;
-  MonitorWrapper *monitorWrapper;
+  std::unique_ptr<Monitor> m_monitor;
+  std::unique_ptr<MonitorWrapper> m_monitorWrapper;
 };
 
 #endif // MAINWINDOW_H

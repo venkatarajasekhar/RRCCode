@@ -1,6 +1,5 @@
 #include "UIView.h"
 #include <iostream>
-#include <RRCConfig/RRCConfig.h>
 
 UIView::UIView(QWidget *parent) : QGraphicsView(parent) {
 

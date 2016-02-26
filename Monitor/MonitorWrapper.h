@@ -13,8 +13,7 @@ public:
 
 private:
     static MonitorWrapper *ms_instance;
-    Monitor *monitor;
-    void Release();
+    Monitor *m_monitor;
 };
 
 #endif // MONITORWRAPPER_H

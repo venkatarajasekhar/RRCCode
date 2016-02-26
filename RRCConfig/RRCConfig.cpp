@@ -1,8 +1,8 @@
 #include "RRCConfig.h"
 #include <Exceptions/FileLoadErrorException.h>
 #include <Packages/pugixml/src/pugixml.hpp>
+#include <RRCCommon/Area.h>
 #include <iostream>
-#include <string>
 
 RRCConfig* RRCConfig::ms_instance = 0;
 const std::string RRCConfig::configFilePath = "/home/lan/Documents/QtProjects/RRC/Config.xml";

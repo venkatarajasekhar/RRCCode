@@ -3,7 +3,8 @@
 
 #include <string>
 #include <vector>
-#include <RRCCommon/Area.h>
+
+class Area;
 
 class RRCConfig {
     static RRCConfig* ms_instance;

@@ -22,14 +22,19 @@ SOURCES += main.cpp\
     Monitor/Monitor.cpp \
     RRCCore/RRCCore.cpp \
     Monitor/MonitorWrapper.cpp \
-    RRCCore/RRCPlanner.cpp \
     RRCCommon/State.cpp \
     RRCCommon/Position.cpp \
     RRCCommon/Node.cpp \
     RRCCommon/Area.cpp \
-    RRCCommon/PositionRandom.cpp \
-    RRCCommon/PositionFactory.cpp \
-    RRCCore/PlanningUtil.cpp
+    RRCCore/PlanningUtil.cpp \
+    RRCCommon/NodeFactory.cpp \
+    RRCCommon/Tree.cpp \
+    RRCCore/KdTree.cpp \
+    RRCCore/RandomTreeNode.cpp \
+    RRCCore/KdTreeNode.cpp \
+    RRCCommon/LogUtil.cpp \
+    RRCCommon/Range.cpp \
+    Exceptions/NotImplementedException.cpp
 
 HEADERS  += MainWindow.h \
     UI/UIView.h \
@@ -40,16 +45,26 @@ HEADERS  += MainWindow.h \
     Monitor/Monitor.h \
     RRCCore/RRCCore.h \
     Monitor/MonitorWrapper.h \
-    RRCCore/RRCPlanner.h \
     RRCCommon/State.h \
     RRCCommon/Position.h \
     RRCCommon/Node.h \
     RRCCommon/Area.h \
-    RRCCommon/PositionRandom.h \
-    RRCCommon/PositionFactory.h \
-    RRCCommon/PositionType.h \
-    RRCCore/PlanningUtil.h
+    RRCCore/PlanningUtil.h \
+    RRCCommon/NodeType.h \
+    RRCCommon/NodeFactory.h \
+    RRCCommon/Tree.h \
+    RRCCore/KdTree.h \
+    RRCCore/RandomTreeNode.h \
+    RRCCore/KdTreeNode.h \
+    RRCCommon/LogUtil.h \
+    RRCCommon/Range.h \
+    Exceptions/NotImplementedException.h
 
 FORMS    +=
 
 CONFIG += c++11
+
+unix:!macx: LIBS += -L$$PWD/../../../../../usr/local/lib/ -llog4cplus
+
+INCLUDEPATH += $$PWD/../../../../../usr/local/include
+DEPENDPATH += $$PWD/../../../../../usr/local/include

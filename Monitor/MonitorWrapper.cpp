@@ -3,13 +3,13 @@
 
 MonitorWrapper* MonitorWrapper::ms_instance = 0;
 
-MonitorWrapper::MonitorWrapper(Monitor *monitor) {
+MonitorWrapper::MonitorWrapper(Monitor *monitor) : m_monitor(monitor)
+{
     ms_instance = this;
-    this->monitor = monitor;
 }
 
 MonitorWrapper::~MonitorWrapper() {
-    this->Release();
+
 }
 
 MonitorWrapper *MonitorWrapper::Instance() {
@@ -17,15 +17,7 @@ MonitorWrapper *MonitorWrapper::Instance() {
 }
 
 Monitor *MonitorWrapper::GetMonitor() const {
-    return this->monitor;
-}
-
-void MonitorWrapper::Release() {
-    if (ms_instance) {
-        delete ms_instance;
-    }
-
-    ms_instance = 0;
+    return m_monitor;
 }
 
 
