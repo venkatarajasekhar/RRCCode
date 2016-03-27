@@ -9,7 +9,7 @@ class Node;
 class NodeFactory
 {
 public:
-    static std::unique_ptr<Node> NewNode(NodeType nodeType);
+    static std::shared_ptr<Node> NewNode(NodeType nodeType);
 };
 
 #endif // NODEFACTORY_H

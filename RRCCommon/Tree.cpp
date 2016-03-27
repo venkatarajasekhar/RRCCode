@@ -1,21 +1,18 @@
 #include "Tree.h"
+#include "Node.h"
 
-Tree::Tree() : m_root(nullptr)
-{
-
-}
-
-Tree::~Tree()
-{
+Tree::Tree() : m_root(nullptr) {
 
 }
 
-Node *Tree::getRoot() const
-{
+Tree::~Tree() {
+
+}
+
+Node *Tree::getRoot() const {
     return m_root;
 }
 
-void Tree::setRoot(Node *root)
-{
+void Tree::setRoot(Node *root) {
     m_root = root;
 }

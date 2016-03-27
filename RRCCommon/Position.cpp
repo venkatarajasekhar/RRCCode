@@ -1,6 +1,7 @@
 #include "Position.h"
 #include <cmath>
 #include <stdexcept>
+#include <sstream>
 
 Position::Position() : m_x(0), m_y(0) {
 
@@ -51,9 +52,20 @@ Position &Position::operator -=(const Position &rhs)
     return *this;
 }
 
+std::stringstream &operator<<(std::stringstream &ss, const Position &pos)
+{
+    ss << "[Position: - x: " << pos.x() << ", y: " << pos.y() << "]";
+    return ss;
+}
+
 float Position::distToOtherPos(const Position &otherPos) const
 {
-    return sqrt(pow(m_x - otherPos.x(), 2.0) + pow(m_y - otherPos.y(), 2.0));
+    return sqrt(distSquaredToOtherPos(otherPos));
+}
+
+float Position::distSquaredToOtherPos(const Position &otherPos) const
+{
+    return pow(m_x - otherPos.x(), 2.0) + pow(m_y - otherPos.y(), 2.0);
 }
 
 float &Position::operator[](std::size_t n)
@@ -82,7 +94,9 @@ const float &Position::operator[](std::size_t n) const
 
 std::ostream & operator <<(std::ostream &os, const Position &pos)
 {
-    os << "Position - x: " << pos.x() << ", y: " << pos.y();
+    std::stringstream ss;
+    ss << pos;
+    os << ss.str();
     return os;
 }
 

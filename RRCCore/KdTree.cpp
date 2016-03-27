@@ -15,27 +15,20 @@ void KdTree::insert(Node *newNode) {
 }
 
 //TODO: implement this method
-void KdTree::reBalanceKdTree()
-{
+void KdTree::reBalanceKdTree() {
 
-}
-
-Node *KdTree::nearestNeighbor(Node *node) const
-{
-    return nearestNeighborHelper(m_root, node);
 }
 
 Node *KdTree::insertHelper(Node *root, Node *newNode, unsigned int depth) {
-     if (newNode == nullptr) return root;
+    if (newNode == nullptr) return root;
 
     // Calculate current dimension
     unsigned int currentDimension =  depth % 2; // 2-D point
 
-    if (root == nullptr)
-    {
+    if (root == nullptr) {
         newNode->setLeftNode(nullptr);
         newNode->setRightNode(nullptr);
-        newNode->setSplit(depth);
+        newNode->setSplit(currentDimension);
         newNode->getRange().updateRange(newNode->getPos());
         return newNode;
     }
@@ -47,7 +40,7 @@ Node *KdTree::insertHelper(Node *root, Node *newNode, unsigned int depth) {
     Position rootPos = root->getPos();
     // Compare the new point with root on current dimension
     // and decide the left or right subtree
-    if (newPos[currentDimension] < rootPos[currentDimension]) {
+    if (newPos[currentDimension] <= rootPos[currentDimension]) {
         root->setLeftNode(insertHelper(root->getLeftNode(), newNode, depth + 1)) ;
     } else {
         root->setRightNode(insertHelper(root->getRightNode(), newNode, depth + 1));
@@ -56,25 +49,52 @@ Node *KdTree::insertHelper(Node *root, Node *newNode, unsigned int depth) {
     return root;
 }
 
+Node *KdTree::nearestNeighbor(Node *node) const {
+    return nearestNeighborHelper(m_root, node);
+}
+
+void KdTree::nearNeighbor(const Node *node, float radius, std::vector<Node *> &nearNodes) const {
+    nearNeighborHelper(m_root, node, radius, nearNodes);
+//    nearNeighborHelper2(m_root, node, radius, nearNodes);
+}
+
+void KdTree::nearNeighborHelper(Node *root, const Node *target, float radius, std::vector<Node *> &nearNodes) const {
+    if(root == nullptr) return;
+    float currDist = root->distToOtherNode(target);
+
+    if(currDist <= radius) {
+        nearNodes.push_back(root);
+    }
+
+    float dx = target->getPos()[root->getSplit()] - root->getPos()[root->getSplit()];
+    nearNeighborHelper(dx <= 0.0 ? root->getLeftNode() : root->getRightNode(), target, radius, nearNodes); // search left or right subtree
+    if(fabs(dx) <= radius) {
+        nearNeighborHelper(dx <= 0.0 ? root->getRightNode(): root->getLeftNode(), target, radius, nearNodes);
+    }
+}
+
+void KdTree::nearNeighborHelper2(Node *root, const Node *target, float radius, std::vector<Node *> &nearNodes) const {
+    if(root == nullptr) return;
+    if (root->isNodRangeIntersectWithBall(target, radius)) {
+        float currDistSquare = root->distSquaredToOtherNode(target);
+        if(currDistSquare <= radius * radius) {
+            nearNodes.push_back(root);
+        }
+
+        nearNeighborHelper2(root->getLeftNode(), target, radius, nearNodes);
+        nearNeighborHelper2(root->getRightNode(), target, radius, nearNodes);
+    }
+}
+
 Node *KdTree::nearestNeighborHelper(Node *root, Node *queryNode) const {
-    if (root == nullptr || queryNode == nullptr) return nullptr;
+    if (root == nullptr) return queryNode;
+    if (queryNode == nullptr) return nullptr;
 
     Node *currNode = root;
     std::stack<Node *> searchPath;
 
     // find the current best
-    while(currNode != nullptr) {
-        searchPath.push(currNode);
-
-        unsigned int currNodeSplitDim = currNode->getSplit();
-        if (queryNode->getPos()[currNodeSplitDim] <= currNode->getPos()[currNodeSplitDim]) {
-            // search left
-            currNode = currNode->getLeftNode();
-        } else {
-            // search right
-            currNode = currNode->getRightNode();
-        }
-    }
+    findLeafNodeClosestToQueryNode(currNode, queryNode, searchPath);
 
     Node *nearestNode = searchPath.top();
     float nearestDist = nearestNode->distToOtherNode(queryNode);
@@ -102,13 +122,12 @@ Node *KdTree::nearestNeighborHelper(Node *root, Node *queryNode) const {
                 }
 
                 if (queryNode->getPos()[currNodeSplitDim] <= currNode->getPos()[currNodeSplitDim]) {
-                    currNode = currNode->getLeftNode();
-                } else {
                     currNode = currNode->getRightNode();
+                } else {
+                    currNode = currNode->getLeftNode();
                 }
-                if (currNode != nullptr) {
-                    searchPath.push(currNode);
-                }
+
+                findLeafNodeClosestToQueryNode(currNode, queryNode, searchPath);
             }
         }
     }
@@ -116,3 +135,40 @@ Node *KdTree::nearestNeighborHelper(Node *root, Node *queryNode) const {
     return nearestNode;
 }
 
+void KdTree::findLeafNodeClosestToQueryNode(Node *currNode, Node* queryNode, std::stack<Node *> &searchPath) const {
+    if (currNode == nullptr) return;
+
+    searchPath.push(currNode);
+    if (currNode->getLeftNode() != nullptr && currNode->getRightNode() != nullptr) {
+        unsigned int currNodeSplitDim = currNode->getSplit();
+        if (queryNode->getPos()[currNodeSplitDim] <= currNode->getPos()[currNodeSplitDim]) {
+            // search left
+            currNode = currNode->getLeftNode();
+        } else {
+            // search right
+            currNode = currNode->getRightNode();
+        }
+    } else {
+        currNode->getLeftNode() == nullptr? currNode = currNode->getRightNode() : currNode = currNode->getLeftNode();
+    }
+
+    findLeafNodeClosestToQueryNode(currNode, queryNode, searchPath);
+}
+
+void KdTree::findLeafNodeClosestToQueryNodeIterative(Node *currNode, Node* queryNode, std::stack<Node *> &searchPath) const {
+    while(currNode != nullptr) {
+        searchPath.push(currNode);
+        if (currNode->getLeftNode() != nullptr && currNode->getRightNode() != nullptr) {
+            unsigned int currNodeSplitDim = currNode->getSplit();
+            if (queryNode->getPos()[currNodeSplitDim] <= currNode->getPos()[currNodeSplitDim]) {
+                // search left
+                currNode = currNode->getLeftNode();
+            } else {
+                // search right
+                currNode = currNode->getRightNode();
+            }
+        } else {
+            currNode->getLeftNode() == nullptr? currNode = currNode->getRightNode() : currNode = currNode->getLeftNode();
+        }
+    }
+}

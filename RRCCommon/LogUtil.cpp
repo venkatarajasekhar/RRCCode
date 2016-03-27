@@ -17,19 +17,20 @@ void LogUtil::info(const std::string &str) {
 }
 
 void LogUtil::warn(const std::string &str) {
-
+    LOG4CPLUS_WARN(ms_logger, str);
 }
 
 void LogUtil::error(const std::string &str) {
-
+    LOG4CPLUS_ERROR(ms_logger, str);
 }
 
 log4cplus::Logger LogUtil::initializeLogger() {
     initialize ();
     helpers::LogLog::getLogLog()->setInternalDebugging(true);
     SharedFileAppenderPtr appendPtr(
-        new RollingFileAppender(LOG4CPLUS_TEXT("/home/lan/Documents/QtProjects/RRC/RRCLogging.txt"), 5*1024, 5, false, true));
-    appendPtr->setLayout( std::auto_ptr<Layout>(new TTCCLayout()) );
+        new RollingFileAppender(LOG4CPLUS_TEXT("/home/lan/Documents/QtProjects/RRC/RRCLog.txt"), 10 *1024 *1024, 5, true));
+    std::auto_ptr<Layout> layout = std::auto_ptr<Layout>(new TTCCLayout(true));
+    appendPtr->setLayout(layout);
     appendPtr->getloc();
     Logger::getRoot().addAppender(SharedAppenderPtr(appendPtr.get()));
     return Logger::getInstance(LOG4CPLUS_TEXT("RRCPlanning"));

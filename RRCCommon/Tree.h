@@ -6,21 +6,14 @@
 
 class Node;
 
-class Tree
-{
-public:
+class Tree {
+  public:
     Tree();
     virtual ~Tree();
 
-    /**
-     * @brief insert
-     * @param newNode
-     */
-    virtual void insert(Node *newNode)=0;
-
     Node *getRoot() const;
 
-protected:
+  protected:
     void setRoot(Node *root);
     Node *m_root;
 };

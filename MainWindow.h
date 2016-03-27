@@ -6,6 +6,7 @@
 
 class Monitor;
 class MonitorWrapper;
+class RRCCore;
 
 namespace Ui {
   class MainWindow;
@@ -21,6 +22,7 @@ public:
 
 private:
   Ui::MainWindow *ui;
+  std::unique_ptr<RRCCore> m_RRCCore;
   std::unique_ptr<Monitor> m_monitor;
   std::unique_ptr<MonitorWrapper> m_monitorWrapper;
 };

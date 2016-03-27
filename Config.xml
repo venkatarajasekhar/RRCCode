@@ -4,22 +4,75 @@
         <add key="worldWidth" value="500"/>
         <add key="worldHeight" value="500"/>
         <obstacle>
-            <add key="obstacleSWCornerX" value="10"/>
-            <add key="obstacleSWCornerY" value="20"/>
+            <add key="obstacleSWCornerX" value="60"/>
+            <add key="obstacleSWCornerY" value="60"/>
             <add key="width" value="50"/>
             <add key="height" value="70"/>
         </obstacle>
         <obstacle>
-            <add key="obstacleSWCornerX" value="250"/>
-            <add key="obstacleSWCornerY" value="340"/>
+            <add key="obstacleSWCornerX" value="350"/>
+            <add key="obstacleSWCornerY" value="100"/>
             <add key="width" value="45"/>
             <add key="height" value="120"/>
         </obstacle>
         <obstacle>
-            <add key="obstacleSWCornerX" value="100"/>
-            <add key="obstacleSWCornerY" value="100"/>
-            <add key="width" value="80"/>
-            <add key="height" value="200"/>
+            <add key="obstacleSWCornerX" value="200"/>
+            <add key="obstacleSWCornerY" value="300"/>
+            <add key="width" value="70"/>
+            <add key="height" value="100"/>
         </obstacle>
  </worldSettings>
+ 
+ <Planning>
+        <add key="PlanningTimeOutInSeconds" value="6"/>
+        <add key="RandomTreeSegmentLength" value="60"/>
+        <add key="ShouldDrawNodeIdInGUI" value="false"/>
+ </Planning>
+ 
+ <Field>
+ <add key="AMatrix" value="0.93 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.93 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.93 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.93 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.93 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.93 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.93 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.93 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.93"/>
+ <add key="QMatrix" value="7.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 7.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 7.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 7.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 7.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 7.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 7.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 7.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 7.00"/>
+ <add key="RMatrix" value="11"/>
+ <basis>
+    <add key="basisPosX" value="125"/>
+    <add key="basisPosY" value="125"/>
+ </basis>
+  <basis>
+    <add key="basisPosX" value="125"/>
+    <add key="basisPosY" value="250"/>
+ </basis>
+  <basis>
+    <add key="basisPosX" value="125"/>
+    <add key="basisPosY" value="375"/>
+ </basis>
+  <basis>
+    <add key="basisPosX" value="250"/>
+    <add key="basisPosY" value="125"/>
+ </basis>
+  <basis>
+    <add key="basisPosX" value="250"/>
+    <add key="basisPosY" value="250"/>
+ </basis>
+  <basis>
+    <add key="basisPosX" value="250"/>
+    <add key="basisPosY" value="375"/>
+ </basis>
+  <basis>
+    <add key="basisPosX" value="375"/>
+    <add key="basisPosY" value="125"/>
+ </basis>
+  <basis>
+    <add key="basisPosX" value="375"/>
+    <add key="basisPosY" value="250"/>
+ </basis>
+  <basis>
+    <add key="basisPosX" value="375"/>
+    <add key="basisPosY" value="375"/>
+ </basis>
+ </Field>
+ <Sensor>
+  <add key="sensingRange" value="100"/>
+  <add key="sensorOutputScale" value="30"/>
+  <add key="sensorNoise" value="10"/>
+ </Sensor>
 </configuration>

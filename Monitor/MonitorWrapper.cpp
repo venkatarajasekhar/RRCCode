@@ -16,7 +16,7 @@ MonitorWrapper *MonitorWrapper::Instance() {
     return ms_instance;
 }
 
-Monitor *MonitorWrapper::GetMonitor() const {
+Monitor *MonitorWrapper::getMonitor() const {
     return m_monitor;
 }
 

@@ -17,12 +17,14 @@ class Position {
 
     std::size_t getDim() const;
 
-    virtual float distToOtherPos(const Position &otherPos) const;
+    float distToOtherPos(const Position &otherPos) const;
+    float distSquaredToOtherPos(const Position &otherPos) const;
 
     Position& operator +=(const Position &rhs);
     Position& operator -=(const Position &rhs);
 
     friend std::ostream &operator <<(std::ostream &os, const Position &pos);
+    friend std::stringstream &operator<<(std::stringstream &ss, const Position &pos);
     float &operator[](std::size_t n);
     const float &operator[](std::size_t n) const;
 

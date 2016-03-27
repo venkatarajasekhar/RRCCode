@@ -10,13 +10,15 @@
 class State {
   public:
     State();
-    State(Position pos);
+    State(const Position &pos);
     ~State();
 
     Position getPos() const;
     void setPos(const Position &value);
 
+    friend std::ostream &operator<<(std::ostream &os, const State &state);
 protected:
+    friend std::stringstream &operator<<(std::stringstream &ss, const State &state);
     Position m_pos;
 };
 

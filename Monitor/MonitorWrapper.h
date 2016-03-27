@@ -9,7 +9,7 @@ public:
     MonitorWrapper(Monitor *monitor);
     virtual ~MonitorWrapper();
     static MonitorWrapper *Instance();
-    Monitor *GetMonitor() const;
+    Monitor *getMonitor() const;
 
 private:
     static MonitorWrapper *ms_instance;

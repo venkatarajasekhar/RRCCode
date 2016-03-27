@@ -30,11 +30,20 @@ SOURCES += main.cpp\
     RRCCommon/NodeFactory.cpp \
     RRCCommon/Tree.cpp \
     RRCCore/KdTree.cpp \
-    RRCCore/RandomTreeNode.cpp \
-    RRCCore/KdTreeNode.cpp \
     RRCCommon/LogUtil.cpp \
     RRCCommon/Range.cpp \
-    Exceptions/NotImplementedException.cpp
+    Exceptions/NotImplementedException.cpp \
+    RRCCore/RRTTree.cpp \
+    RRCCore/KdTreeWrapper.cpp \
+    RRCCommon/TreeFactory.cpp \
+    RRCCore/RandomTree.cpp \
+    Exceptions/NotFoundNearestNeighborException.cpp \
+    RRCCore/RRTStarTree.cpp \
+    RRCCore/RRCTree.cpp \
+    RRCCore/Field.cpp \
+    RRCCore/KalmanFilter.cpp \
+    RRCCore/Sensor.cpp \
+    RRCCommon/EigenVectorXdUtil.cpp
 
 HEADERS  += MainWindow.h \
     UI/UIView.h \
@@ -54,11 +63,22 @@ HEADERS  += MainWindow.h \
     RRCCommon/NodeFactory.h \
     RRCCommon/Tree.h \
     RRCCore/KdTree.h \
-    RRCCore/RandomTreeNode.h \
-    RRCCore/KdTreeNode.h \
     RRCCommon/LogUtil.h \
     RRCCommon/Range.h \
-    Exceptions/NotImplementedException.h
+    Exceptions/NotImplementedException.h \
+    RRCCore/RRTTree.h \
+    RRCCore/KdTreeWrapper.h \
+    RRCCommon/TreeType.h \
+    RRCCommon/TreeFactory.h \
+    RRCCore/RandomTree.h \
+    Exceptions/NotFoundNearestNeighborException.h \
+    RRCCore/RRTStarTree.h \
+    RRCCore/RRCTree.h \
+    RRCCore/Field.h \
+    RRCCore/KalmanFilter.h \
+    RRCCore/Sensor.h \
+    RRCCommon/EigenVectorXdUtil.h
+
 
 FORMS    +=
 
@@ -66,5 +86,6 @@ CONFIG += c++11
 
 unix:!macx: LIBS += -L$$PWD/../../../../../usr/local/lib/ -llog4cplus
 
-INCLUDEPATH += $$PWD/../../../../../usr/local/include
+INCLUDEPATH += $$PWD/../../../../../usr/local/include \
+               $$PWD/Packages/Eigen/
 DEPENDPATH += $$PWD/../../../../../usr/local/include
