@@ -62,7 +62,7 @@ float KalmanFilter::estimationUncertainty(const std::vector<Node *> &movingSenso
         G_hat[1] = G_hat[0] + A_hat[0] * ( G_hat[0] * (W.transpose()).inverse() ) * A_hat[0].transpose();
         H_hat[1] = H_hat[0] + A_hat[0].transpose() * (W.transpose()).inverse() * H_hat[0] * A_hat[0];
 
-        if ((H_hat[1] - H_hat[0]).norm() <=  m_calculateUncerntaintyTolerance * H_hat[1].norm()) {
+        if ((H_hat[1] - H_hat[0]).norm() <=  m_calculateUncerntaintyTolerance) {
             break;
         } else {
             A_hat[0] = A_hat[1];

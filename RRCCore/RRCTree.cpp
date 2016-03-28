@@ -85,13 +85,12 @@ bool RRCTree::getPathBetweenNodes(Node *node1, Node *node2, std::vector<Node *> 
     }
 
     Node *lca = nullptr; // lowest common ancestor
-    for(std::vector<Node *>::const_reverse_iterator iter1 = path1.rbegin(), iter2 = path2.rbegin(); iter1 != path1.rend() && iter2 != path2.rend(); ++iter1, ++iter2) {
+    std::vector<Node *>::const_reverse_iterator iter1 = path1.rbegin(), iter2 = path2.rbegin();
+    for(; iter1 != path1.rend() && iter2 != path2.rend(); ++iter1, ++iter2) {
         if ((*iter1) != (*iter2)) {
             break;
         } else {
             lca = *iter1;
-            path1.pop_back();
-            path2.pop_back();
         }
     }
 
@@ -99,9 +98,9 @@ bool RRCTree::getPathBetweenNodes(Node *node1, Node *node2, std::vector<Node *> 
         path.clear();
         return false; // no common ancestor
     } else {
-        path = path1;
+        path = std::vector<Node *>(path1.begin(), path1.begin() + (path1.rend() - iter1));
         path.push_back(lca); // push common ancestor
-        for(std::vector<Node *>::const_reverse_iterator iter2 = path2.rbegin(); iter2 != path2.rend(); ++iter2) {
+        for(; iter2 != path2.rend(); ++iter2) {
             path.push_back(*iter2);
         }
 
