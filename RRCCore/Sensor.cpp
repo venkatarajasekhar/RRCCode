@@ -16,8 +16,7 @@ Eigen::MatrixXd Sensor::sensorMeasurementMatrix(const Position &sensorPos, const
     return cMatrix;
 }
 
-float Sensor::R() const
-{
+float Sensor::R() const {
     return m_R;
 }
 

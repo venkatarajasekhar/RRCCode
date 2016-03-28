@@ -218,6 +218,7 @@ Position UIModel::goalPos() {
 
     return Position((float)boundRectInScene.x(), (float)boundRectInScene.y());
 }
+
 Field UIModel::field() const
 {
     return m_field;

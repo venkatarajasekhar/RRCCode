@@ -45,10 +45,10 @@ void RandomTree::setupGoalNode(const std::shared_ptr<Node> &goalNode) {
 int RandomTree::getNumOfNodes() const {
     return m_nodes.size();
 }
+
 std::vector<Node *> RandomTree::getReturnedPath() const {
     return m_returnedPath;
 }
-
 
 std::shared_ptr<Node> RandomTree::generateRandomNode() const {
     std::shared_ptr<Node> node(nullptr);
