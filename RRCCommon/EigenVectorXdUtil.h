@@ -6,7 +6,7 @@ class EigenVectorXdUtil
 {
 public:
     EigenVectorXdUtil();
-    static float max(const Eigen::VectorXd &vec);
+    static float max(const Eigen::VectorXf &vec);
 };
 
 #endif // EIGENVECTORXDUTIL_H

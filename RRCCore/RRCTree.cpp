@@ -3,6 +3,8 @@
 #include "RRCCore/PlanningUtil.h"
 #include <limits>
 #include <Exceptions/NotFoundNearestNeighborException.h>
+#include <chrono>
+#include <iostream>
 
 RRCTree::RRCTree(const KalmanFilter &filter) : m_kalmanFilter(filter) {
 
@@ -20,25 +22,37 @@ Node *RRCTree::extend() {
         float radius = calculateRadius();
         getNodesInNearBall(newNode.get(), radius, nearNodes);
 
+        // find nodes inside the near ball that is connectable to the newNode
+        std::vector<Node *> collisionFreeNearNodes;
+        for(std::vector<Node *>::const_iterator iter = nearNodes.begin(); iter != nearNodes.end(); ++iter) {
+            if (PlanningUtil::isCollisionWithObs(newNode.get(), *iter) == false) {
+                collisionFreeNearNodes.push_back(*iter);
+            }
+        }
+
         float minCost = std::numeric_limits<float>::max();
         std::vector<Node *> minCostPath;
         Node *minNode = nearestNeighbor;
-        if (nearNodes.size() > 1) {
-            for(unsigned int i = 0; i < nearNodes.size() - 1; ++i) {
-                for(unsigned int j = i + 1; j < nearNodes.size(); ++j) {
-                    if (PlanningUtil::isCollisionWithObs(newNode.get(), nearNodes[i]) == false && PlanningUtil::isCollisionWithObs(newNode.get(), nearNodes[j]) == false) {
-                        std::vector<Node *> path;
-                        if(getPathBetweenNodes(nearNodes[i], nearNodes[j], path) == false) throw std::logic_error("No path found between near nodes");
+        if (collisionFreeNearNodes.size() > 1) {
+            for(unsigned int i = 0; i < collisionFreeNearNodes.size() - 1; ++i) {
+                for(unsigned int j = i + 1; j < collisionFreeNearNodes.size(); ++j) {
+                    std::vector<Node *> path;
+                    if(getPathBetweenNodes(collisionFreeNearNodes[i], collisionFreeNearNodes[j], path) == false) throw std::logic_error("No path found between near nodes");
 
-                        path.push_back(newNode.get()); // path should include the new node
-                        float cost = calculateCycleCost(path);
-                        if (cost < minCost) {
-                            minCost = cost;
-                            minCostPath = path;
-                            // if any of them is the nearest neighbor, we choose to connect the nearest neighbor in order to extend the tree, otherwise, we can choose any one of them to connect
-                            if (nearNodes[i] == nearestNeighbor || nearNodes[j] == nearestNeighbor) minNode = nearestNeighbor;
-                            else minNode = nearNodes[i];
-                        }
+                    path.push_back(newNode.get()); // path should include the new node
+
+//                    std::chrono::time_point<std::chrono::system_clock> start, end;
+//                    start = std::chrono::system_clock::now();
+                    float cost = calculateCycleCost(path);
+//                    end = std::chrono::system_clock::now();
+//                    std::chrono::duration<double> elapsed = end - start;
+//                    std::cout << "Time elapsed to calculate cycle cost is " << elapsed.count() << std::endl;
+                    if (cost < minCost) {
+                        minCost = cost;
+                        minCostPath = path;
+                        // if any of them is the nearest neighbor, we choose to connect the nearest neighbor in order to extend the tree, otherwise, we can choose any one of them to connect
+                        if (collisionFreeNearNodes[i] == nearestNeighbor || collisionFreeNearNodes[j] == nearestNeighbor) minNode = nearestNeighbor;
+                        else minNode = collisionFreeNearNodes[i];
                     }
                 }
             }

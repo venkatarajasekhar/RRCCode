@@ -26,7 +26,7 @@ private:
     Field m_field;
     Sensor m_sensor;
     const float m_calculateUncerntaintyTolerance;
-    void infoCollectedAlongPath(const std::vector<Node *> &movingSensorPath, std::vector<Eigen::MatrixXd> &infoMatrix) const;
+    void infoCollectedAlongPath(const std::vector<Node *> &movingSensorPath, std::vector<Eigen::MatrixXf> &infoMatrix) const;
 };
 
 #endif // KALMANFILTER_H

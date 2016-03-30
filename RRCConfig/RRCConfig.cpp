@@ -132,7 +132,7 @@ bool RRCConfig::initializeFromConfig(const std::string &sectionName, const std::
     }
 }
 
-Eigen::MatrixXd RRCConfig::initializeFromConfig(const std::string &sectionName, const std::string &configName, const Eigen::MatrixXd &defaultValue) const {
+Eigen::MatrixXf RRCConfig::initializeFromConfig(const std::string &sectionName, const std::string &configName, const Eigen::MatrixXf &defaultValue) const {
     try {
         std::string str = getElementValue(sectionName, configName);
         std::vector<float> elements = extractValueFromString(str);
@@ -141,7 +141,7 @@ Eigen::MatrixXd RRCConfig::initializeFromConfig(const std::string &sectionName, 
         unsigned int sqrtOfNumElements = sqrtHelper(numElements);
         if (sqrtOfNumElements * sqrtOfNumElements != numElements) throw std::invalid_argument("In config file, the number of elments for matrix should be a square of an interger.");
 
-        Eigen::MatrixXd  res(sqrtOfNumElements, sqrtOfNumElements);
+        Eigen::MatrixXf  res(sqrtOfNumElements, sqrtOfNumElements);
         for(unsigned int i = 0; i < sqrtOfNumElements; ++i) {
             for(unsigned int j = 0; j < sqrtOfNumElements; ++j) {
                 res(i, j) = elements[i * sqrtOfNumElements + j];

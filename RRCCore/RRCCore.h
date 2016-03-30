@@ -30,8 +30,6 @@ private:
     void setupTree();
 
     void planningFinished();
-    void setupStartAndGoalNode();
-
 };
 
 #endif // RRCCORE_H

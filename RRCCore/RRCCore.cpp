@@ -24,7 +24,6 @@ RRCCore::~RRCCore() {
 
 void RRCCore::Run() {
     setupTree();
-    setupStartAndGoalNode();
     startPlanning();
 }
 
@@ -45,6 +44,20 @@ void RRCCore::setupTree() {
     m_KdTree = std::unique_ptr<KdTree>(new KdTree());
     m_KdTreeWrapper = std::unique_ptr<KdTreeWrapper>(new KdTreeWrapper(m_KdTree.get()));
     m_randomTree = TreeFactory::newTree(treeType);
+
+    // set up tree start node
+    Position pos = MonitorWrapper::Instance()->getMonitor()->startPos();
+    std::shared_ptr<Node> startNode = std::shared_ptr<Node>(new Node(State(pos)));
+    m_randomTree->setupStartingNode(startNode);
+    onNewNodeAdded(startNode.get());
+
+    // no goal node for RRC
+    if (treeType != TreeType::RandomRRCTree) {
+        pos = MonitorWrapper::Instance()->getMonitor()->goalPos();
+        std::shared_ptr<Node> goalNode = std::shared_ptr<Node>(new Node(State(pos)));
+        m_randomTree->setupGoalNode(goalNode);
+        onNewNodeAdded(goalNode.get());
+    }
 }
 
 void RRCCore::startPlanning() {
@@ -69,16 +82,3 @@ void RRCCore::planningFinished() {
     MonitorWrapper::Instance()->getMonitor()->drawReturnedPath(path);
     MonitorWrapper::Instance()->getMonitor()->planningFinished();
 }
-
-void RRCCore::setupStartAndGoalNode() {
-    Position pos = MonitorWrapper::Instance()->getMonitor()->startPos();
-    std::shared_ptr<Node> startNode = std::shared_ptr<Node>(new Node(State(pos)));
-    m_randomTree->setupStartingNode(startNode);
-    onNewNodeAdded(startNode.get());
-
-    pos = MonitorWrapper::Instance()->getMonitor()->goalPos();
-    std::shared_ptr<Node> goalNode = std::shared_ptr<Node>(new Node(State(pos)));
-    m_randomTree->setupGoalNode(goalNode);
-    onNewNodeAdded(goalNode.get());
-}
-

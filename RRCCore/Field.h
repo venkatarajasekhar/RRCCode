@@ -10,16 +10,16 @@ public:
     Field();
     Field(const Area &sceneSize);
 
-    Eigen::MatrixXd A() const;
+    Eigen::MatrixXf A() const;
 
-    Eigen::MatrixXd Q() const;
+    Eigen::MatrixXf Q() const;
 
     std::vector<Position> bases() const;
     unsigned int fieldDimension() const;
 
 private:
-    Eigen::MatrixXd m_A;
-    Eigen::MatrixXd m_Q;
+    Eigen::MatrixXf m_A;
+    Eigen::MatrixXf m_Q;
     std::vector<Position> m_bases;
 
     void initializeFieldFromConfig(const Area &sceneSize);

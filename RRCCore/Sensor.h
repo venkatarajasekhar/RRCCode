@@ -12,7 +12,7 @@ class Sensor
 public:
     Sensor(float sensingRange, float sensorOutputScale, float sensorNoise);
 
-    Eigen::MatrixXd sensorMeasurementMatrix(const Position &sensorPos, const Field &field) const;
+    Eigen::MatrixXf sensorMeasurementMatrix(const Position &sensorPos, const Field &field) const;
     float R() const;
 
 private:

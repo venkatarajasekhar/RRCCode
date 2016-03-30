@@ -6,19 +6,19 @@
 #include <sstream>
 
 Field::Field() {
-    m_A = Eigen::MatrixXd::Zero(3,3);
-    m_Q = Eigen::MatrixXd::Zero(3,3);
+    m_A = Eigen::MatrixXf::Zero(3,3);
+    m_Q = Eigen::MatrixXf::Zero(3,3);
 }
 
 Field::Field(const Area &sceneSize) {
     initializeFieldFromConfig(sceneSize);
 }
 
-Eigen::MatrixXd Field::A() const {
+Eigen::MatrixXf Field::A() const {
     return m_A;
 }
 
-Eigen::MatrixXd Field::Q() const {
+Eigen::MatrixXf Field::Q() const {
     return m_Q;
 }
 
@@ -32,8 +32,8 @@ unsigned int Field::fieldDimension() const
 }
 
 void Field::initializeFieldFromConfig(const Area &sceneSize) {
-    Eigen::MatrixXd defaultA = Eigen::MatrixXd::Identity(3,3) * 0.99;
-    Eigen::MatrixXd defaultQ = Eigen::MatrixXd::Identity(3,3) * 4;
+    Eigen::MatrixXf defaultA = Eigen::MatrixXf::Identity(3,3) * 0.99;
+    Eigen::MatrixXf defaultQ = Eigen::MatrixXf::Identity(3,3) * 4;
 
     try {
         m_A = RRCConfig::Instance()->initializeFromConfig("Field", "AMatrix", defaultA);

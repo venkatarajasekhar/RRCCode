@@ -30,7 +30,7 @@ class RRCConfig {
      */
     int initializeFromConfig(const std::string &sectionName, const std::string &configName, int defaultValue) const;
     bool initializeFromConfig(const std::string &sectionName, const std::string &configName, bool defaultValue) const;
-    Eigen::MatrixXd initializeFromConfig(const std::string &sectionName, const std::string &configName, const Eigen::MatrixXd &defaultValue) const;
+    Eigen::MatrixXf initializeFromConfig(const std::string &sectionName, const std::string &configName, const Eigen::MatrixXf &defaultValue) const;
 
     /**
      * @brief InitializeObstaclesFromConfig

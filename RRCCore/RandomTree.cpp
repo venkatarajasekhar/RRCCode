@@ -90,22 +90,19 @@ std::pair<std::shared_ptr<Node>, Node *> RandomTree::generateRandomNodeAndReturn
     Node *nearestNeighbor = nullptr;
     std::shared_ptr<Node> newNode(nullptr);
 
-    time_t start, end; // a stop watch
-    std::time(&start);
+    std::time_t start = std::time(nullptr);
     while(1) {
         std::shared_ptr<Node> randomNode = generateRandomNode();
         nearestNeighbor = KdTreeWrapper::instance()->getKdTree()->nearestNeighbor(randomNode.get());
 //        nearestNeighbor = getNearestNodeByBruteForce(randomNode.get());
         newNode = getNewNodeBasedOnRandomNodeAndNearestNode(randomNode.get(), nearestNeighbor, m_randomTreeSegmentLength);
 
-        std::time(&end);
         if (PlanningUtil::isCollisionWithObs(nearestNeighbor, newNode.get()) == false) {
-//            MonitorWrapper::Instance()->getMonitor()->drawNodeForDebug(randomNode.get(), nearestNeighbor); // TODO: used for debug, remove later
             break;
         }
 
-        if (std::difftime(end, start) > m_planningTimeOutInSeconds) {
-            LogUtil::warn("Timeout when generating new node! Configured timeout limit is " + std::to_string(m_planningTimeOutInSeconds) + " seconds, while " + std::to_string(std::difftime(end, start)) + " seconds elapsed!");
+        if (std::difftime(std::time(nullptr), start) > m_planningTimeOutInSeconds) {
+            LogUtil::warn("Timeout when generating new node! Configured timeout limit is " + std::to_string(m_planningTimeOutInSeconds) + " seconds");
             break;
         }
     }
