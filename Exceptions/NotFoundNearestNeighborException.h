@@ -7,7 +7,7 @@ class NotFoundNearestNeighborException : public std::exception
 {
 public:
     NotFoundNearestNeighborException();
-    const char *what();
+    virtual const char *what() const noexcept;
 };
 
 #endif // NOTFOUNDNEARESTNEIGHBOREXCEPTION_H
