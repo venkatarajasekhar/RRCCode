@@ -28,7 +28,7 @@ log4cplus::Logger LogUtil::initializeLogger() {
     initialize ();
     helpers::LogLog::getLogLog()->setInternalDebugging(true);
     SharedFileAppenderPtr appendPtr(
-        new RollingFileAppender(LOG4CPLUS_TEXT("/home/lan/Documents/QtProjects/RRC/RRCLog.txt"), 10 *1024 *1024, 5, true));
+        new RollingFileAppender(LOG4CPLUS_TEXT("RRCLog.txt"), 10 *1024 *1024, 5, true));
     std::auto_ptr<Layout> layout = std::auto_ptr<Layout>(new TTCCLayout(true));
     appendPtr->setLayout(layout);
     appendPtr->getloc();

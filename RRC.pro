@@ -84,8 +84,4 @@ FORMS    +=
 
 CONFIG += c++11
 
-unix:!macx: LIBS += -L$$PWD/../../../../../usr/local/lib/ -llog4cplus
-
-INCLUDEPATH += $$PWD/../../../../../usr/local/include \
-               $$PWD/Packages/Eigen/
-DEPENDPATH += $$PWD/../../../../../usr/local/include
+LIBS += -L/usr/local/lib/ -llog4cplus
