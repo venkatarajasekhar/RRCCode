@@ -23,7 +23,7 @@ class Node {
     void setState(const State &value);
 
     float distToOtherNode(const Node *neighbor) const;
-    float distSquaredToOtherNode(const Node *neighbor) const;
+    float squaredDistToOtherNode(const Node *neighbor) const;
     Position getPos() const;
 
     std::unordered_set<Node *> getChildren() const;
@@ -41,7 +41,7 @@ class Node {
 
     Range getRange() const;
     void setRange(const Range &range);
-    bool isNodRangeIntersectWithBall(const Node *node, float radius) const;
+    bool isNodeRangeIntersectWithBall(const Node *node, float radius) const;
 
     std::string toString();
     friend std::ostream &operator<<(std::ostream &os, const Node *node);

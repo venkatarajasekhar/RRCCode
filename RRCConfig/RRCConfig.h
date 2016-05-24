@@ -13,13 +13,13 @@ class RRCConfig {
 
   public:
     static RRCConfig* Instance();
-    static void Release();
+    static void release();
 
     /**
      * @brief GetConfigFilePath
      * @return
      */
-    std::string GetConfigFilePath() const;
+    std::string getConfigFilePath() const;
 
     /**
      * @brief InitializeFromConfig
@@ -44,7 +44,7 @@ class RRCConfig {
     ~RRCConfig();
     const static std::string configFilePath;
 
-    std::string getElementValue(std::string sectionName, std::string configName) const;
+    std::string getElementValue(const std::string &sectionName, const std::string &configName) const;
 
     /**
      * @brief extractValueFromString: extract float number from a string, two numbers are sepearted by ',' or ' '

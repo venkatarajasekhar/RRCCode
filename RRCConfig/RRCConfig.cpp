@@ -7,7 +7,7 @@
 #include <sstream>
 #include <stdexcept>
 
-RRCConfig* RRCConfig::ms_instance = 0;
+RRCConfig* RRCConfig::ms_instance = nullptr;
 const std::string RRCConfig::configFilePath = "/home/lan/Documents/QtProjects/RRC/Config.xml";
 
 RRCConfig::RRCConfig() {
@@ -15,10 +15,10 @@ RRCConfig::RRCConfig() {
 }
 
 RRCConfig::~RRCConfig() {
-    Release();
+    release();
 }
 
-std::string RRCConfig::getElementValue(std::string sectionName, std::string configName) const {
+std::string RRCConfig::getElementValue(const std::string &sectionName, const std::string &configName) const {
     pugi::xml_document doc;
     pugi::xml_parse_result result = doc.load_file(configFilePath.c_str());
 
@@ -89,14 +89,14 @@ RRCConfig* RRCConfig::Instance() {
     return ms_instance;
 }
 
-void RRCConfig::Release() {
+void RRCConfig::release() {
     if (ms_instance) {
         delete ms_instance;
     }
-    ms_instance = 0;
+    ms_instance = nullptr;
 }
 
-std::string RRCConfig::GetConfigFilePath() const {
+std::string RRCConfig::getConfigFilePath() const {
     return configFilePath;
 }
 

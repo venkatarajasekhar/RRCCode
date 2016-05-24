@@ -18,7 +18,7 @@ class Position {
     std::size_t getDim() const;
 
     float distToOtherPos(const Position &otherPos) const;
-    float distSquaredToOtherPos(const Position &otherPos) const;
+    float squaredDistToOtherPos(const Position &otherPos) const;
 
     Position& operator +=(const Position &rhs);
     Position& operator -=(const Position &rhs);

@@ -17,7 +17,7 @@ Monitor::~Monitor() {
 }
 
 Area Monitor::getSceneSize() const {
-    return m_UIModel->GetSceneSize();
+    return m_UIModel->getSceneSize();
 }
 
 Field Monitor::getField() const
@@ -25,8 +25,8 @@ Field Monitor::getField() const
     return m_UIModel->field();
 }
 
-std::vector<Area> Monitor::GetObstacles() const {
-    return m_UIModel->GetObstacles();
+std::vector<Area> Monitor::getObstacles() const {
+    return m_UIModel->getObstacles();
 }
 
 void Monitor::onButtonRunClicked() {

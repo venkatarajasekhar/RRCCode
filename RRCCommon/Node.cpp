@@ -41,8 +41,8 @@ float Node::distToOtherNode(const Node *neighbor) const {
     return m_state.getPos().distToOtherPos(neighbor->getState().getPos());
 }
 
-float Node::distSquaredToOtherNode(const Node *neighbor) const {
-    return m_state.getPos().distSquaredToOtherPos(neighbor->getState().getPos());
+float Node::squaredDistToOtherNode(const Node *neighbor) const {
+    return m_state.getPos().squaredDistToOtherPos(neighbor->getState().getPos());
 }
 
 Position Node::getPos() const {
@@ -103,7 +103,7 @@ void Node::setRange(const Range &range) {
     m_range = range;
 }
 
-bool Node::isNodRangeIntersectWithBall(const Node *node, float radius) const {
+bool Node::isNodeRangeIntersectWithBall(const Node *node, float radius) const {
     Position minPos = m_range.min();
     Position rangeCenter = (m_range.max() + minPos) * 0.5;
     float rangeRadius = rangeCenter.distToOtherPos(minPos);

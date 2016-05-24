@@ -19,7 +19,7 @@ public:
 
     Area getSceneSize() const;
     Field getField() const;
-    std::vector<Area> GetObstacles() const;
+    std::vector<Area> getObstacles() const;
     void onButtonRunClicked();
     void onButtonResetClicked();
     void onNewNodeAdded(Node *newNode);

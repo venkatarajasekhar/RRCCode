@@ -63,9 +63,9 @@ MainWindow::MainWindow() {
     comboBox->addItem("RRT*");
     comboBox->addItem("RRC");
 
-    UIModel *model = new UIModel(this, comboBox, spinBoxNumSteps, run, reset, labelCurrNumNodes);
-    model->SetSceneSize();
-    model->AddObstacles();
+    UIModel *model = new UIModel(this, comboBox, spinBoxNumSteps, run, labelCurrNumNodes);
+    model->setSceneSize();
+    model->addObstacles();
 
     UIView *viewer = new UIView(model, this);
     m_RRCCore = std::unique_ptr<RRCCore>(new RRCCore());

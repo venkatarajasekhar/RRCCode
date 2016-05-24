@@ -1,4 +1,5 @@
 #include "EigenVectorXdUtil.h"
+#include "Packages/Eigen/Core"
 
 EigenVectorXdUtil::EigenVectorXdUtil() {
 

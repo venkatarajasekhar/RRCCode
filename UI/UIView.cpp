@@ -9,7 +9,3 @@ UIView::UIView(QGraphicsScene *scene, QWidget *parent) : QGraphicsView(scene, pa
 
 }
 
-void UIView::slot_dataAdded() {
-
-}
-

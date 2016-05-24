@@ -14,23 +14,23 @@
 #include <RRCCore/PlanningUtil.h>
 #include "RRCCommon/Node.h"
 
-UIModel::UIModel(QObject *parent, QComboBox *treeType, QSpinBox *numSteps, QPushButton *run, QPushButton *reset, QLabel *currNumNodes) : QGraphicsScene(parent), m_treeType(treeType), m_numSteps(numSteps) , m_runButton(run), m_resetButton(reset), m_currNumNodes(currNumNodes), m_startPos(nullptr), m_goalPos(nullptr) {
+UIModel::UIModel(QObject *parent, QComboBox *treeType, QSpinBox *numSteps, QPushButton *run, QPushButton *reset, QLabel *currNumNodes) : QGraphicsScene(parent), m_treeType(treeType), m_numSteps(numSteps) , m_runButton(run), m_currNumNodes(currNumNodes), m_startPos(nullptr), m_goalPos(nullptr) {
     initializeUIModel();
 }
 
-Area UIModel::GetSceneSize() {
+Area UIModel::getSceneSize() const {
     return m_sceneSize;
 }
 
-std::vector<Area> UIModel::GetObstacles() {
+std::vector<Area> UIModel::getObstacles() const {
     return m_obstacles;
 }
 
-void UIModel::SetSceneSize() {
+void UIModel::setSceneSize() {
     setSceneRect(0, 0, m_sceneSize.width(), m_sceneSize.height());
 }
 
-void UIModel::AddObstacles() {
+void UIModel::addObstacles() {
     for(unsigned int i = 0; i < m_obstacles.size(); ++i) {
         QGraphicsRectItem *item  = addRect(m_obstacles[i].x(), m_obstacles[i].y(), m_obstacles[i].width(), m_obstacles[i].height());
         item->setBrush(Qt::black);
@@ -46,7 +46,7 @@ void UIModel::onNewPointAdded(float x, float y) {
 
 void UIModel::resetScene() {
     clear();
-    AddObstacles();
+    addObstacles();
     m_startPos = nullptr;
     m_goalPos = nullptr;
     m_currNumNodes->setText(QString("0"));
@@ -88,7 +88,7 @@ TreeType UIModel::mapFromQcomboBoxTextToTreeType(const std::string &currStr) con
     else return TreeType::RandomRRTTree;
 }
 
-void UIModel::runClickedEnableRelatedWidgets(bool value) {
+void UIModel::EnableRelatedWidgetsAfterRun(bool value) {
     m_runButton->setEnabled(value);
     m_treeType->setEnabled(value);
     m_numSteps->setEnabled(value);
@@ -104,10 +104,10 @@ TreeType UIModel::treeType() const {
 }
 
 void UIModel::planningFinished() {
-    runClickedEnableRelatedWidgets(true);
+    EnableRelatedWidgetsAfterRun(true);
 }
 
-void UIModel::setCurrNumOfNodes(int currNumNodes) const {
+void UIModel::setCurrNumOfNodes(int currNumNodes) {
     m_currNumNodes->setText(QString::fromStdString(std::to_string(currNumNodes)));
 }
 
@@ -149,7 +149,7 @@ void UIModel::drawReturnedPath(const std::vector<Node *> &path)
 }
 
 void UIModel::slot_run() {
-    runClickedEnableRelatedWidgets(false);
+    EnableRelatedWidgetsAfterRun(false);
     MonitorWrapper::Instance()->getMonitor()->onButtonRunClicked();
 }
 

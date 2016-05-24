@@ -8,9 +8,6 @@ class UIView : public QGraphicsView {
   public:
     UIView(QWidget *parent);
     UIView(QGraphicsScene *scene, QWidget *parent);
-
-  public slots:
-    void slot_dataAdded();
 };
 
 #endif // UIVIEW_H

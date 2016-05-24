@@ -1,7 +1,7 @@
 #include "MonitorWrapper.h"
 #include "Monitor.h"
 
-MonitorWrapper* MonitorWrapper::ms_instance = 0;
+MonitorWrapper* MonitorWrapper::ms_instance = nullptr;
 
 MonitorWrapper::MonitorWrapper(Monitor *monitor) : m_monitor(monitor)
 {

@@ -1,6 +1,8 @@
 #ifndef EIGENVECTORXDUTIL_H
 #define EIGENVECTORXDUTIL_H
-#include "Packages/Eigen/Core"
+namespace Eigen {
+    class VectorXf;
+}
 
 class EigenVectorXdUtil
 {

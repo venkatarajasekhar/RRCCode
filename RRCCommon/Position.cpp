@@ -60,10 +60,10 @@ std::stringstream &operator<<(std::stringstream &ss, const Position &pos)
 
 float Position::distToOtherPos(const Position &otherPos) const
 {
-    return sqrt(distSquaredToOtherPos(otherPos));
+    return sqrt(squaredDistToOtherPos(otherPos));
 }
 
-float Position::distSquaredToOtherPos(const Position &otherPos) const
+float Position::squaredDistToOtherPos(const Position &otherPos) const
 {
     return pow(m_x - otherPos.x(), 2.0) + pow(m_y - otherPos.y(), 2.0);
 }

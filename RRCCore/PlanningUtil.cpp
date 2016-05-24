@@ -18,7 +18,7 @@ bool PlanningUtil::isCollisionWithObs(Node *startNode, Node *endNode) {
     Position startPos(startNode->getState().getPos());
     Position endPos(endNode->getState().getPos());
 
-    std::vector<Area> obs = MonitorWrapper::Instance()->getMonitor()->GetObstacles();
+    std::vector<Area> obs = MonitorWrapper::Instance()->getMonitor()->getObstacles();
 
     for(unsigned int i = 0; i < obs.size(); ++i) {
         if (isPositionCollideWithObs(obs[i], startPos, endPos)) return true;

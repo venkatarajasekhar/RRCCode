@@ -75,8 +75,8 @@ void KdTree::nearNeighborHelper(Node *root, const Node *target, float radius, st
 
 void KdTree::nearNeighborHelper2(Node *root, const Node *target, float radius, std::vector<Node *> &nearNodes) const {
     if(root == nullptr) return;
-    if (root->isNodRangeIntersectWithBall(target, radius)) {
-        float currDistSquare = root->distSquaredToOtherNode(target);
+    if (root->isNodeRangeIntersectWithBall(target, radius)) {
+        float currDistSquare = root->squaredDistToOtherNode(target);
         if(currDistSquare <= radius * radius) {
             nearNodes.push_back(root);
         }
