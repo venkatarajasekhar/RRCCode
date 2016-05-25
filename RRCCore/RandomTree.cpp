@@ -150,7 +150,7 @@ void RandomTree::getNodesInNearBallBruteForce(const Node *newNode, float radius,
     if (newNode == nullptr) throw std::invalid_argument("Searching for nodes inside ball, the node can not be null.");
 
     for(std::vector<std::shared_ptr<Node> >::const_iterator iter = m_nodes.begin(); iter != m_nodes.end(); ++iter) {
-        if ((*iter).get()->distSquaredToOtherNode(newNode) <= radius * radius) {
+        if ((*iter).get()->squaredDistToOtherNode(newNode) <= radius * radius) {
             nearNodes.push_back((*iter).get());
         }
     }

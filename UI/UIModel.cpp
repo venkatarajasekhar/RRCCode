@@ -14,7 +14,7 @@
 #include <RRCCore/PlanningUtil.h>
 #include "RRCCommon/Node.h"
 
-UIModel::UIModel(QObject *parent, QComboBox *treeType, QSpinBox *numSteps, QPushButton *run, QPushButton *reset, QLabel *currNumNodes) : QGraphicsScene(parent), m_treeType(treeType), m_numSteps(numSteps) , m_runButton(run), m_currNumNodes(currNumNodes), m_startPos(nullptr), m_goalPos(nullptr) {
+UIModel::UIModel(QObject *parent, QComboBox *treeType, QSpinBox *numSteps, QPushButton *run, QLabel *currNumNodes) : QGraphicsScene(parent), m_treeType(treeType), m_numSteps(numSteps) , m_runButton(run), m_currNumNodes(currNumNodes), m_startPos(nullptr), m_goalPos(nullptr) {
     initializeUIModel();
 }
 

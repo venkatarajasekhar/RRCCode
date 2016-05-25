@@ -61,7 +61,7 @@ void RRCCore::setupTree() {
 }
 
 void RRCCore::startPlanning() {
-    std::srand(5000); //TODO: remove later
+//    std::srand(5000); //TODO: remove later
     int numSteps = MonitorWrapper::Instance()->getMonitor()->getNumSteps();
 
     try {

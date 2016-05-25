@@ -21,7 +21,7 @@ class UIModel : public QGraphicsScene {
     void slot_reset();
 
   public:
-    UIModel(QObject *parent, QComboBox *treeType, QSpinBox *numSteps, QPushButton *run, QPushButton *reset, QLabel *currNumNodes);
+    UIModel(QObject *parent, QComboBox *treeType, QSpinBox *numSteps, QPushButton *run, QLabel *currNumNodes);
     Area getSceneSize() const;
     std::vector<Area> getObstacles() const;
     void setSceneSize();
