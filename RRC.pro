@@ -43,7 +43,8 @@ SOURCES += main.cpp\
     RRCCore/Field.cpp \
     RRCCore/KalmanFilter.cpp \
     RRCCore/Sensor.cpp \
-    RRCCommon/EigenVectorXdUtil.cpp
+    RRCCommon/EigenVectorXdUtil.cpp \
+    Thread/ScopedThread.cpp
 
 HEADERS  += MainWindow.h \
     UI/UIView.h \
@@ -77,7 +78,8 @@ HEADERS  += MainWindow.h \
     RRCCore/Field.h \
     RRCCore/KalmanFilter.h \
     RRCCore/Sensor.h \
-    RRCCommon/EigenVectorXdUtil.h
+    RRCCommon/EigenVectorXdUtil.h \
+    Thread/ScopedThread.h
 
 
 FORMS    +=
