@@ -9,4 +9,4 @@
 
 # How to Use
 See the GUI
-![GUI can not show properly, click to view](./Gui.jpg)
+![GUI can not show properly, click to view](Gui.jpg)
