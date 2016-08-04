@@ -28,6 +28,23 @@ std::vector<Area> UIModel::getObstacles() const {
 
 void UIModel::setSceneSize() {
     setSceneRect(0, 0, m_sceneSize.width(), m_sceneSize.height());
+
+    // draw scene boundary
+    QLineF topLine(sceneRect().topLeft(),
+                   sceneRect().topRight());
+    QLineF leftLine(sceneRect().topLeft(),
+                    sceneRect().bottomLeft());
+    QLineF rightLine(sceneRect().topRight(),
+                     sceneRect().bottomRight());
+    QLineF bottomLine(sceneRect().bottomLeft(),
+                      sceneRect().bottomRight());
+
+    QPen myPen = QPen(Qt::red);
+
+    addLine(topLine, myPen);
+    addLine(leftLine, myPen);
+    addLine(rightLine, myPen);
+    addLine(bottomLine, myPen);
 }
 
 void UIModel::addObstacles() {
@@ -75,7 +92,7 @@ void UIModel::onNewNodeAdded(Node *newNode) {
 }
 
 void UIModel::initializeUIModel() {
-    m_sceneSize = Area(0, 0, RRCConfig::Instance()->initializeFromConfig("worldSettings", "worldWidth", 100), RRCConfig::Instance()->initializeFromConfig("worldSettings", "worldHeight", 100));
+    m_sceneSize = Area(0, 0, RRCConfig::Instance()->initializeFromConfig("worldSettings", "worldWidth", 600), RRCConfig::Instance()->initializeFromConfig("worldSettings", "worldHeight", 600));
     m_obstacles = RRCConfig::Instance()->initializeObstaclesFromConfig();
     m_shouldDrawNodeIdInGUI = RRCConfig::Instance()->initializeFromConfig("Planning", "ShouldDrawNodeIdInGUI", false);
     m_field = Field(m_sceneSize);

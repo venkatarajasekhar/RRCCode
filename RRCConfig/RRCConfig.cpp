@@ -8,7 +8,7 @@
 #include <stdexcept>
 
 RRCConfig* RRCConfig::ms_instance = nullptr;
-const std::string RRCConfig::configFilePath = "/home/lan/Documents/QtProjects/RRC/Config.xml";
+const std::string RRCConfig::configFilePath = "/home/lan/Documents/Projects/QtProjects/RRC/Config.xml";
 
 RRCConfig::RRCConfig() {
 
