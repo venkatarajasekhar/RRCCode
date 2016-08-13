@@ -63,6 +63,7 @@ private:
     void EnableRelatedWidgetsAfterRun(bool value);
     void onNewPointAdded(float x, float y);
     void resetScene();
+    void drawBorder();
 };
 
 #endif // UIMODEL_H

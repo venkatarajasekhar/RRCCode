@@ -28,23 +28,7 @@ std::vector<Area> UIModel::getObstacles() const {
 
 void UIModel::setSceneSize() {
     setSceneRect(0, 0, m_sceneSize.width(), m_sceneSize.height());
-
-    // draw scene boundary
-    QLineF topLine(sceneRect().topLeft(),
-                   sceneRect().topRight());
-    QLineF leftLine(sceneRect().topLeft(),
-                    sceneRect().bottomLeft());
-    QLineF rightLine(sceneRect().topRight(),
-                     sceneRect().bottomRight());
-    QLineF bottomLine(sceneRect().bottomLeft(),
-                      sceneRect().bottomRight());
-
-    QPen myPen = QPen(Qt::red);
-
-    addLine(topLine, myPen);
-    addLine(leftLine, myPen);
-    addLine(rightLine, myPen);
-    addLine(bottomLine, myPen);
+    drawBorder();
 }
 
 void UIModel::addObstacles() {
@@ -67,6 +51,26 @@ void UIModel::resetScene() {
     m_startPos = nullptr;
     m_goalPos = nullptr;
     m_currNumNodes->setText(QString("0"));
+}
+
+void UIModel::drawBorder()
+{
+    // draw scene boundary
+    QLineF topLine(sceneRect().topLeft(),
+                   sceneRect().topRight());
+    QLineF leftLine(sceneRect().topLeft(),
+                    sceneRect().bottomLeft());
+    QLineF rightLine(sceneRect().topRight(),
+                     sceneRect().bottomRight());
+    QLineF bottomLine(sceneRect().bottomLeft(),
+                      sceneRect().bottomRight());
+
+    QPen myPen = QPen(Qt::red);
+
+    addLine(topLine, myPen);
+    addLine(leftLine, myPen);
+    addLine(rightLine, myPen);
+    addLine(bottomLine, myPen);
 }
 
 void UIModel::onNewNodeAdded(Node *newNode) {
@@ -173,6 +177,8 @@ void UIModel::slot_run() {
 void UIModel::slot_reset() {
     MonitorWrapper::Instance()->getMonitor()->onButtonResetClicked();
     resetScene();
+    setSceneSize();
+    drawBorder();
 }
 
 void UIModel::contextMenuEvent(QGraphicsSceneContextMenuEvent *event) {
